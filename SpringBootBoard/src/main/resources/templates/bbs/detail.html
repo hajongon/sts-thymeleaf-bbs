@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>게시물 상세 정보</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../css/detail.css" />
+</head>
+
+<body>
+	<div class="container">
+
+
+		<div>
+			<div class="header">
+				<a th:href="@{/board}" class="back-btn">←</a>
+				<h2>게시물 상세 정보</h2>
+				<div> </div>
+			</div>
+			<div class="board-box">
+				<div class="board-title">
+					<div class="board-idx" th:text="${board.idx}"></div>
+					<div th:text="${board.title}"></div>
+				</div>
+				<div class="board-info">
+					<div class="user-box">
+						<div class="img-box">
+							<img th:src="@{/img/111.png}" />
+						</div>
+						<div class="author" th:text="${board.author}">
+
+						</div>
+					</div>
+					<div class="created-at" th:text="${board.createdat}">
+
+					</div>
+				</div>
+				<div>
+					<div <div th:text="${board.contents}" class="board-contents"></div>
+				</div>
+			</div>
+			<div class="button-box">
+				<a th:href="'/board/' + ${board.idx} + '/update'" class="btn">수정</a>
+				<form class th:action="@{/board/delete/{idx}(idx=${board.idx})}" method="post">
+					<input type="hidden" name="_method" value="DELETE">
+					<button type="submit" class="btn">삭제</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	</div>
+</body>
+
+</html>

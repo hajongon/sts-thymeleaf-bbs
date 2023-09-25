@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>게시판(Spring Boot + MyBatis)</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/board.css" />
+	<script th:inline="javascript">
+		/* Thymeleaf 템플릿에서 boardList 데이터 가져오기 */
+		const response = [[${response}]]
+		const currentPage = [[${currentPage}]]
+
+		console.log('boardList:', response.data)
+		console.log('pagination:', response.pagination)
+		console.log('currentPage:', currentPage)
+
+		/* JavaScript에서 boardList 출력 */
+
+		const {endPage, nextBlock, prevBlock, startPage, totalPageCnt} = response.pagination
+
+	</script>
+
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<div class="header">
+				<a th:href="'/'" class="back-btn">←</a>
+				<a th:href="@{/create}" th:text="글쓰기" class="write-button"></a>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성일</th>
+						<th>작성자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- boardList를 순회하며 데이터를 출력 -->
+					<tr th:each="board : ${response.data}">
+						<td th:text="${board.idx}"></td>
+						<td><a th:href="'/board/' + ${board.idx}" th:text="${board.title}" class="board-title"></a></td>
+						<td th:text="${board.createdat}"></td>
+						<td th:text="${board.author}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="button-box">
+			<ul class="page-buttons">
+				<li th:if="${currentPage > 1}" class="first-page-btn">
+					<a th:href="'/board?page=1'">첫 페이지</a>
+				</li>
+				<li th:if="${currentPage > 10}" class="prev-btn">
+					<a th:href="'/board?page=' + ${response.pagination.prevBlock}">이전</a>
+				</li>
+				<li th:each="pageNum : ${#numbers.sequence(response.pagination.startPage, response.pagination.endPage)}"
+					th:class="${pageNum == currentPage} ? 'page-button active' : 'page-button'">
+					<a th:href="'/board?page=' + ${pageNum}" th:text="${pageNum}"></a>
+				</li>
+				<li th:if="${((currentPage - 1) / 10) + 1 < response.pagination.totalBlockCnt}" class="next-btn">
+					<a th:href="'/board?page=' + ${response.pagination.nextBlock}">다음</a>
+				</li>
+				<li th:if="${currentPage < response.pagination.totalPageCnt}" class="last-page-btn">
+					<a th:href="'/board?page=' + ${response.pagination.totalPageCnt}">마지막 페이지</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</body>
+
+</html>

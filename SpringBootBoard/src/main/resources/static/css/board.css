@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 24px 0px 24px 0px;
+}
+
+.write-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4px;
+	color: black;
+	border: 1px solid black;
+}
+
+.back-btn {
+	font-size: 24px;
+	font-weight: 800;
+	cursor: pointer;
+}
+
+.button-box {
+	margin-top: 12px;
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	align-items: center;
+}
+
+.button-box a {
+	color: blue;
+}
+
+.page-buttons {
+	display: flex;
+	flex-direction: row;
+	gap: 6px;
+}
+
+.page-button {
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4px;
+	border-radius: 2px;
+}
+
+.page-button>a {
+	color: rgb(128, 128, 128);
+}
+
+.page-button:hover {
+	background-color: lightgray;
+}
+
+.first-page-btn,
+.last-page-btn,
+.prev-btn,
+.next-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4px;
+}
+
+.first-page-btn>a,
+.last-page-btn>a,
+.prev-btn>a,
+.next-btn>a {
+	color: rgb(128, 128, 128);
+}
+
+.first-page-btn>a:hover,
+.last-page-btn>a:hover,
+.prev-btn>a:hover,
+.next-btn>a:hover {
+	color: black;
+}
+
+
+
+
+table {
+	border-spacing: 12px;
+	border-collapse: collapse;
+	width: 1080px;
+}
+
+th {
+	text-align: left;
+	border-bottom: 1px solid black;
+}
+
+th,
+td {
+	padding: 5px 10px 5px 10px;
+}
+
+tr:nth-child(2n+0) {
+	background-color: rgb(241, 241, 241);
+}
+
+.active {
+	background-color: lightgray;
+}
+
+.board-title {
+	color: black;
+}
+
+.board-title:visited {
+	color: black;
+}

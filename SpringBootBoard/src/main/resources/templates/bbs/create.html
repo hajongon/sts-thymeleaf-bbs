@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>게시글 작성</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/create.css" />
+</head>
+
+<body>
+	<div class="container">
+		<h2>게시글 작성</h2>
+		<form th:action="@{/board}" method="post" onsubmit="showAlert();" class="input-form">
+			<div class="input-box">
+				<label for="title">제목</label>
+				<input type="text" id="title" name="title" th:required="required">
+			</div>
+			<div class="input-box">
+				<label for="author">작성자</label>
+				<input type="text" id="author" name="author" th:required="required">
+			</div>
+			<div class="input-box">
+				<label for="contents">내용</label>
+				<textarea id="contents" name="contents" th:required="required"></textarea>
+			</div>
+			<div class="btn-box">
+				<button type="submit">작성</button>
+				<a th:href="@{/board}">취소</a>
+			</div>
+		</form>
+	</div>
+	<!-- JavaScript 알림 스크립트 -->
+	<script>
+		function showAlert() {
+			alert("게시물이 작성되었습니다.");
+		}
+	</script>
+</body>
+
+</html>
